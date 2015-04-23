@@ -1,0 +1,2 @@
+# bones
+My mini boilerplate
