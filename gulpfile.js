@@ -1,6 +1,7 @@
 var gulp = require('gulp');
-
 var rimraf = require('rimraf');
+var browserSync = require('browser-sync');
+var reload = browserSync.reload;
 
 var sass = require('gulp-sass');
 var concat = require('gulp-concat');
@@ -28,6 +29,7 @@ gulp.task('sass', function() {
 gulp.task('jshint', function() {
     return gulp.src('./static/js/*.js')
       .pipe(jshint());
+        .pipe(reload({stream:true}));
 });
 
 gulp.task('js', function() {
@@ -35,11 +37,23 @@ gulp.task('js', function() {
       .pipe(uglify())
       .pipe(concat('js.js'))
       .pipe(gulp.dest('./build/js/'))
+        .pipe(reload({stream:true}));
 });
 
 gulp.task('default', ['rmrf', 'sass', 'jshint', 'js']);
 
 gulp.task('watch', function() {
     gulp.start('default');
+
+    browserSync({
+        server: {
+            baseDir: "./"
+        },
+        open: false
+    });
+
+    gulp.watch('./static/css/**/*.*', ['css']);
+    gulp.watch('./static/js/**/*.*', ['js']);
+    gulp.watch('**/*.html').on('change', reload);
     gulp.watch('./static/**/*.*', ['default']);
 });
