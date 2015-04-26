@@ -26,7 +26,7 @@ gulp.task('css', function() {
         .pipe(concat('css.css'))
         .pipe(minifyCSS())
         .pipe(gulp.dest('./build'))
-        .pipe(reload({stream:true}));
+        .pipe(reload({ stream:true }));
 });
 
 gulp.task('js', function() {
@@ -34,10 +34,11 @@ gulp.task('js', function() {
         './static/js/*.js',
     ])
         .pipe(jshint())
+        .pipe(jshint.reporter('default'))
         .pipe(uglify())
         .pipe(concat('js.js'))
         .pipe(gulp.dest('./build'))
-        .pipe(reload({stream:true}));
+        .pipe(reload({ stream:true }));
 });
 
 gulp.task('default', ['rmrf', 'css', 'js']);
