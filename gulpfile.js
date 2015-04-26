@@ -16,16 +16,16 @@ gulp.task('rmrf', function() {
     rimraf.sync('./build');
 });
 
-gulp.task('sass', function() {
-    gulp.src(['./static/css/normalize.css',
-                './static/css/styleguide/styleguide.scss',
-                './static/css/*.scss'])
+gulp.task('css', function() {
+    return gulp.src([
+        './static/css/normalize.css',
+        './static/css/styleguide/styleguide.scss',
+        './static/css/*.scss',
+    ])
         .pipe(sass())
+        .on('error', function(error) { console.error(error); })
         .pipe(concat('css.css'))
         .pipe(minifyCSS())
-        .pipe(gulp.dest('./build/css'));
-});
-
 gulp.task('jshint', function() {
     return gulp.src('./static/js/*.js')
       .pipe(jshint());
