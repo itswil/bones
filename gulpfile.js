@@ -48,14 +48,17 @@ gulp.task('js', function() {
     debug: true
   });
 
-  return b.bundle()
+  b.bundle()
+    .on('error', function (err) {
+      console.log(err.toString());
+      this.emit('end');
+    })
     .pipe(source('bundle.js'))
     .pipe(buffer())
     .pipe(sourcemaps.init({
       loadMaps: true
     }))
     .pipe(uglify())
-    .pipe(plumber())
     .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest('./build'))
     .pipe(reload({
