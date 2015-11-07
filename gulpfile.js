@@ -16,17 +16,18 @@ gulp.task('rmrf', function() {
 });
 
 gulp.task('css', function() {
-    return gulp.src([
-        './static/css/normalize.css',
-        './static/css/styleguide/styleguide.scss',
-        './static/css/*.scss',
+  gulp.src([
+      './static/css/styles.scss',
     ])
-        .pipe(sass())
-        .on('error', function(error) { console.error(error); })
-        .pipe(concat('css.css'))
-        .pipe(minifyCSS())
-        .pipe(gulp.dest('./build'))
-        .pipe(reload({ stream:true }));
+    .pipe(plumber())
+    .pipe(sass({
+      outputStyle: 'compressed'
+    }))
+    .pipe(gulp.dest('./build'))
+    .pipe(reload({
+      stream: true
+    }));
+});
 });
 
 gulp.task('js', function() {
