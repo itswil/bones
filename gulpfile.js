@@ -12,7 +12,7 @@ var uglify = require('gulp-uglify');
 
 
 gulp.task('rmrf', function() {
-    rimraf.sync('./build');
+  rimraf.sync('./build');
 });
 
 gulp.task('css', function() {
