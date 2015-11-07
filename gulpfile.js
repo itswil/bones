@@ -1,5 +1,6 @@
 var gulp = require('gulp');
 var rimraf = require('rimraf');
+var plumber = require('gulp-plumber');
 var browserSync = require('browser-sync');
 var reload = browserSync.reload;
 
