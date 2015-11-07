@@ -14,28 +14,29 @@ var sourcemaps = require('gulp-sourcemaps');
 
 
 gulp.task('rmrf', function() {
-  rimraf.sync('./build');
+  rimraf.sync('build');
 });
 
 gulp.task('css', function() {
   gulp.src([
-      './static/css/styles.scss',
+      'static/css/styles.scss',
     ])
     .pipe(plumber())
     .pipe(sass({
       outputStyle: 'compressed'
     }))
-    .pipe(gulp.dest('./build'))
+    .pipe(gulp.dest('build'))
     .pipe(reload({
       stream: true
     }));
 });
 
-gulp.task('images', function(){
+gulp.task('images', function() {
+  rimraf.sync('build/images');
   gulp.src([
-    './static/images/**/*.*',
+    'static/images/**/*.*',
   ])
-  .pipe(gulp.dest('./build/images'))
+  .pipe(gulp.dest('build/images'))
   .pipe(reload({
     stream: true
   }));
@@ -53,14 +54,14 @@ gulp.task('js', function() {
       console.log(err.toString());
       this.emit('end');
     })
-    .pipe(source('bundle.js'))
     .pipe(buffer())
     .pipe(sourcemaps.init({
       loadMaps: true
     }))
     .pipe(uglify())
     .pipe(sourcemaps.write('./'))
-    .pipe(gulp.dest('./build'))
+    .pipe(source('bundle.js'))
+    .pipe(gulp.dest('build'))
     .pipe(reload({
       stream: true
     }));
@@ -78,8 +79,8 @@ gulp.task('watch', function() {
     open: false
   });
 
-  gulp.watch('./static/css/**/*.*', ['css']);
-  gulp.watch('./static/images/**/*.*', ['images']);
-  gulp.watch('./static/js/**/*.*', ['js']);
+  gulp.watch('static/css/**/*.*', ['css']);
+  gulp.watch('static/images/**/*.*', ['images']);
+  gulp.watch('static/js/**/*.*', ['js']);
   gulp.watch('**/*.html').on('change', reload);
 });
