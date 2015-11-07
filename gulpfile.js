@@ -4,8 +4,6 @@ var browserSync = require('browser-sync');
 var reload = browserSync.reload;
 
 var sass = require('gulp-sass');
-var concat = require('gulp-concat');
-var minifyCSS = require('gulp-minify-css');
 
 var browserify = require('browserify');
 var uglify = require('gulp-uglify');
