@@ -73,7 +73,7 @@ gulp.task('watch', function() {
 
   browserSync({
     server: {
-      baseDir: "./"
+      baseDir: './'
     },
     open: false
   });
