@@ -7,8 +7,11 @@ var sass = require('gulp-sass');
 var concat = require('gulp-concat');
 var minifyCSS = require('gulp-minify-css');
 
-var jshint = require('gulp-jshint');
+var browserify = require('browserify');
 var uglify = require('gulp-uglify');
+var source = require('vinyl-source-stream');
+var buffer = require('vinyl-buffer');
+var sourcemaps = require('gulp-sourcemaps');
 
 
 gulp.task('rmrf', function() {
@@ -31,15 +34,25 @@ gulp.task('css', function() {
 });
 
 gulp.task('js', function() {
-    return gulp.src([
-        './static/js/*.js',
-    ])
-        .pipe(jshint())
-        .pipe(jshint.reporter('default'))
-        .pipe(uglify())
-        .pipe(concat('js.js'))
-        .pipe(gulp.dest('./build'))
-        .pipe(reload({ stream:true }));
+
+  var b = browserify({
+    entries: './static/js/main.js',
+    debug: true
+  });
+
+  return b.bundle()
+    .pipe(source('bundle.js'))
+    .pipe(buffer())
+    .pipe(sourcemaps.init({
+      loadMaps: true
+    }))
+    .pipe(uglify())
+    .pipe(plumber())
+    .pipe(sourcemaps.write('./'))
+    .pipe(gulp.dest('./build'))
+    .pipe(reload({
+      stream: true
+    }));
 });
 
 gulp.task('default', ['rmrf', 'css', 'js']);
