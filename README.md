@@ -1,6 +1,7 @@
-# bones
+# Bones
 
-A mini boilerplate using:
+A barebones boilerplate
+
 - BrowserSync
 - Gulp
 - Sass
