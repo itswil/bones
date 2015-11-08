@@ -11,6 +11,7 @@ var uglify = require('gulp-uglify');
 var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
 var sourcemaps = require('gulp-sourcemaps');
+var reactify = require('reactify');
 
 
 gulp.task('rmrf', function() {
@@ -45,8 +46,9 @@ gulp.task('images', function() {
 gulp.task('js', function() {
 
   var b = browserify({
-    entries: './static/js/main.js',
-    debug: true
+    entries: 'static/js/main.js',
+    debug: true,
+    transform: ['reactify']
   });
 
   b.bundle()
@@ -54,13 +56,13 @@ gulp.task('js', function() {
       console.log(err.toString());
       this.emit('end');
     })
+    .pipe(source('bundle.js'))
     .pipe(buffer())
     .pipe(sourcemaps.init({
       loadMaps: true
     }))
     .pipe(uglify())
     .pipe(sourcemaps.write('./'))
-    .pipe(source('bundle.js'))
     .pipe(gulp.dest('build'))
     .pipe(reload({
       stream: true
