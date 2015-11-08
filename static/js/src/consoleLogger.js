@@ -2,7 +2,8 @@ var $ = require('../lib/jquery-2.1.4');
 
 var consoleLogger = function() {
   var init = function() {
-    console.log('jQuery has been imported: ' + $);
+    console.log('jQuery version: ' + $.fn.jquery);
+    console.log('This comes from consoleLogger.js called from main.js');
   };
 
   return {

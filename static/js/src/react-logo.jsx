@@ -4,7 +4,8 @@ var ReactLogo = React.createClass({
   render: function(){
     return (
       <div className="react-logo">
-        <p>React is working!</p>
+        <p>React successful</p>
+        <p>This comes from react-logo.jsx called from main.js</p>
       </div>
     );
   }
