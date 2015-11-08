@@ -6,3 +6,4 @@ A mini boilerplate using:
 - Sass
 - Browserify
 - Uglify
+- React
