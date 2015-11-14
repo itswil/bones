@@ -35,12 +35,12 @@ gulp.task('css', function() {
 gulp.task('images', function() {
   rimraf.sync('build/images');
   gulp.src([
-    'static/images/**/*.*',
-  ])
-  .pipe(gulp.dest('build/images'))
-  .pipe(reload({
-    stream: true
-  }));
+      'static/images/**/*.*',
+    ])
+    .pipe(gulp.dest('build/images'))
+    .pipe(reload({
+      stream: true
+    }));
 });
 
 gulp.task('js', function() {
@@ -52,7 +52,7 @@ gulp.task('js', function() {
   });
 
   b.bundle()
-    .on('error', function (err) {
+    .on('error', function(err) {
       console.log(err.toString());
       this.emit('end');
     })
