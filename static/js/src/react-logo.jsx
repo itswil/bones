@@ -1,7 +1,6 @@
 var React = require('react');
 
-var ReactLogo = React.createClass({
-  render: function(){
+var ReactLogo = React.createClass({render: function() {
     return (
       <div className="react-logo">
         <p>React successful</p>
