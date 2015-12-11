@@ -1,11 +1,11 @@
-var consoleLogger = require('./src/consoleLogger');
+var ConsoleLogger = require('./src/console-logger');
 
-consoleLogger.init();
+ConsoleLogger.init();
 
 var React = require('react');
 var ReactDOM = require('react-dom');
 
-var ReactLogo = require('./src/react-logo.jsx');
+var Message = require('./src/message.jsx');
 
 ReactDOM.render(
-  <ReactLogo/>, document.getElementById('react-logo-wrap'));
+  <Message/>, document.getElementById('react-message'));
