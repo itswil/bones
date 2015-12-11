@@ -1,6 +1,6 @@
 var React = require('react');
 
-var MessageComponent = React.createClass({render: function() {
+var Message = React.createClass({render: function() {
     return (
       <div className="react-message">
         <p>React successful</p>
@@ -10,4 +10,4 @@ var MessageComponent = React.createClass({render: function() {
   }
 });
 
-module.exports = MessageComponent;
+module.exports = Message;
