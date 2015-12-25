@@ -29,9 +29,8 @@ gulp.task('css', () => {
       outputStyle: 'compressed'
     }))
     .pipe(gulp.dest('build'))
-    .pipe(reload({
-      stream: true
-    }));
+    .pipe(reload({ stream: true })
+  );
 });
 
 gulp.task('images', () => {
@@ -40,9 +39,8 @@ gulp.task('images', () => {
       'static/images/**/*.*',
     ])
     .pipe(gulp.dest('build/images'))
-    .pipe(reload({
-      stream: true
-    }));
+    .pipe(reload({ stream: true })
+  );
 });
 
 // JS Start
@@ -58,6 +56,7 @@ function bundle() {
     .pipe(source('bundle.js'))
     .pipe(buffer())
     .pipe(sourcemaps.init({ loadMaps: true }))
+    .pipe(uglify())
     .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest('build'))
     .pipe(reload({ stream: true })
