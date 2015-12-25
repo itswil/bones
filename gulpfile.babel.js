@@ -16,12 +16,11 @@ const source = require('vinyl-source-stream');
 const buffer = require('vinyl-buffer');
 const sourcemaps = require('gulp-sourcemaps');
 
-
-gulp.task('rmrf', function() {
+gulp.task('rmrf', () => {
   rimraf.sync('build');
 });
 
-gulp.task('css', function() {
+gulp.task('css', () => {
   return gulp.src([
       'static/css/styles.scss',
     ])
@@ -35,7 +34,7 @@ gulp.task('css', function() {
     }));
 });
 
-gulp.task('images', function() {
+gulp.task('images', () => {
   rimraf.sync('build/images');
   return gulp.src([
       'static/images/**/*.*',
@@ -52,7 +51,7 @@ gulp.task('js', bundle);
 function bundle() {
   return b
     .bundle()
-    .on('error', function(e) {
+    .on('error', (e) => {
         console.log(e.toString());
         this.emit('end');
       })
@@ -71,13 +70,12 @@ var b = watchify(browserify({
 }));
 
 b.transform(babelify, { presets: ['es2015', 'react'], compact: true });
-
 b.on('update', bundle);
 // JS End
 
 gulp.task('default', ['rmrf', 'css', 'images', 'js']);
 
-gulp.task('watch', function() {
+gulp.task('watch', () => {
   gulp.start('default');
 
   browserSync({
