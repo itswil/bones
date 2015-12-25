@@ -1,4 +1,4 @@
-var $ = require('../lib/jquery-2.1.4');
+import $ from 'jquery';
 
 var ConsoleLogger = function() {
   var init = function() {
