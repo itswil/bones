@@ -1,6 +1,7 @@
-var React = require('react');
+import React from 'react';
 
-var Message = React.createClass({render: function() {
+export default class Message extends React.Component {
+  render() {
     return (
       <div className="react-message">
         <p>React successful</p>
@@ -8,6 +9,4 @@ var Message = React.createClass({render: function() {
       </div>
     );
   }
-});
-
-module.exports = Message;
+};

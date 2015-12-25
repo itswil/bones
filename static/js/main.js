@@ -1,11 +1,10 @@
-var ConsoleLogger = require('./src/console-logger');
+import ConsoleLogger from './src/console-logger';
 
 ConsoleLogger.init();
 
-var React = require('react');
-var ReactDOM = require('react-dom');
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-var Message = require('./src/message.jsx');
+import Message from './src/message.jsx';
 
-ReactDOM.render(
-  <Message/>, document.getElementById('react-message'));
+ReactDOM.render(<Message/>, document.getElementById('react-message'));
